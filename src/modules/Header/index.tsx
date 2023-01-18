@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import BackButton from './components/BackButton'
 import Logo from './components/Logo'
 import LongMenu from './components/LongMenu'
 import Navigation from './components/Navigation'
-import ShortMenu from './components/ShortMenu'
-import styled from 'styled-components';
+import MenuNav from './components/MenuNav'
+import styled from 'styled-components'
+import { AppContext } from 'src/Providers/global'
+
+interface IShowMenu {
+    showMenu: boolean;
+}
 
 function Header() {
+
+    const { showMenu, menuOff } = useContext(AppContext);
+
     return (
         <Wrapper>
             <Section>
@@ -17,12 +25,14 @@ function Header() {
                 <Navigation />
             </Section>
             <Section>
-                <ShortMenu />
+                <MenuNav type='short' />
             </Section>
             <LongMenu />
+            <NotLongMenu onClick={() => menuOff()} showMenu={showMenu} />
         </Wrapper>
     )
 }
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -36,8 +46,21 @@ const Section = styled.div`
     }
     &:nth-child(3) {
         margin-right: 40px;
+        min-width: 250px;
+        width: 25%;
     }
 `;
+
+const NotLongMenu = styled.div<IShowMenu> `
+top: 0px;
+left: 0px;
+position: absolute;
+height: 100vh;
+width: 100vw;
+z-index: 1;
+visibility:  ${({ showMenu }) => (showMenu ? 'visible' : 'hidden')};
+background-color: rgba(0,0,0,0.5);
+`
 
 export default Header
 

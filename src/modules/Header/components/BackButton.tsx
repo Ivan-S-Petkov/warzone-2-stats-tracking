@@ -5,6 +5,10 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { showBackButton } from '../api/functions';
 
+interface IButton {
+  visible: string,
+}
+
 function BackButton() {
 
   const navigate = useNavigate();
@@ -17,9 +21,6 @@ function BackButton() {
     </Button >
   )
 }
-interface IButton {
-  visible: string,
-}
 
 const Button = styled.div<IButton>`
   background: rgb(70, 70, 70, 0.6);
@@ -29,6 +30,9 @@ const Button = styled.div<IButton>`
   height: 50px;
   font-size: 35px;
   visibility: ${props => props.visible};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background: linear-gradient(

@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from 'src/Providers/global';
 import styled from 'styled-components'
-import ShortMenu from './ShortMenu'
+import MenuNav from './MenuNav'
+
+interface iShow {
+  showSideMenu: boolean,
+}
 
 function LongMenu() {
+
+  const { showMenu } = useContext(AppContext);
+
   return (
-    <LongMenuWrapper>
+    <LongMenuWrapper showSideMenu={showMenu}>
       <Section>
-        <ShortMenu />
+        <MenuNav type='long' />
       </Section>
       <Section>
 
@@ -18,16 +26,17 @@ function LongMenu() {
   )
 }
 
-const LongMenuWrapper = styled.div`
+const LongMenuWrapper = styled.div<iShow>`
+  z-index:2;
   top: 0px;
   right: 40px;
-  min-width: 200px;
-  width: 20%;
+  min-width: 250px;
+  width: 25%;
   height: 100%;
   border-left: 2px solid rgba(130,130,130,1);
   border-right: 2px solid rgba(130,130,130,1);
   background-color: rgba(80,80,80,1);
-  visibility: visible;
+  visibility:  ${({ showSideMenu }) => (showSideMenu ? 'visible' : 'hidden')};
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -35,18 +44,23 @@ const LongMenuWrapper = styled.div`
 `
 
 const Section = styled.div`
-  height:130px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   :first-of-type{
   background-color: rgba(100,100,100,1);
+  height:130px;
+  }
+  
+  :nth-of-type(2){
+    height:100%;
   }
 
   :last-of-type{
   bottom: 0px;
   background-color: rgba(60,60,60,1);
+  height:130px;
   }
 `
 

@@ -2,12 +2,13 @@ import React from 'react';
 import background from './images/background1.jpg';
 import './App.css';
 import Header from './modules/Header';
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 
 function App() {
+
   return (
-    <div className="App">
+    <div>
       <GlobalStyle />
       <Header />
     </div>
@@ -23,7 +24,8 @@ const GlobalStyle = createGlobalStyle`
     //font-family: 'Sarpanch', sans-serif;
     font-family: 'Kanit', sans-serif;
    }
-
 `;
+
+
 
 export default App;
