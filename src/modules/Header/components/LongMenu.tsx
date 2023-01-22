@@ -35,7 +35,7 @@ const LongMenuWrapper = styled.div<iShow>`
   height: 100%;
   border-left: 2px solid rgba(130,130,130,1);
   border-right: 2px solid rgba(130,130,130,1);
-  background-color: rgba(80,80,80,1);
+  background-color: rgba(75,75,75,1);
   visibility:  ${({ showSideMenu }) => (showSideMenu ? 'visible' : 'hidden')};
   position: absolute;
   display: flex;
@@ -49,7 +49,7 @@ const Section = styled.div`
   align-items: center;
 
   :first-of-type{
-  background-color: rgba(100,100,100,1);
+  background-color: rgba(90,90,90,1);
   height:130px;
   }
   

@@ -5,13 +5,13 @@ import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
 import { NavLink } from "react-router-dom";
 
-interface IMenu {
-  showMenu: boolean,
+interface IType {
+  type: string,
 }
 
 function MenuNav(props: { type: string }) {
 
-  const { showMenu, menuOn } = useContext(AppContext);
+  const { menuOn } = useContext(AppContext);
 
   function showPage(page: string): void {
     console.log(page);
@@ -19,12 +19,12 @@ function MenuNav(props: { type: string }) {
 
   return (
     <Wrapper onClick={() => menuOn()}>
-      <MenuWrapper showMenu={showMenu}>
-        <MenuElem className="nav-link" to='grids' onClick={() => showPage("Grid")} showMenu={showMenu}><FontAwesomeIcon icon={faGrip} /></MenuElem>
-        <MenuElem className="nav-link" to='friends' onClick={() => showPage("Friends")} showMenu={showMenu}><FontAwesomeIcon icon={faHeadset} /></MenuElem>
-        <MenuElem className="nav-link" to='notifications' onClick={() => showPage("Notifications")} showMenu={showMenu}><FontAwesomeIcon icon={faBell} /></MenuElem>
-        <MenuElem className="nav-link" to='settings' onClick={() => showPage("Settings")} showMenu={showMenu}><FontAwesomeIcon icon={faGear} /></MenuElem>
-        <MenuElem className="nav-link" to='profile' onClick={() => showPage("Profile")} showMenu={showMenu}><FontAwesomeIcon icon={faUser} /></MenuElem>
+      <MenuWrapper type={props.type}>
+        <MenuElem className="nav-link" to='grids' onClick={() => showPage("Grid")} type={props.type}><FontAwesomeIcon icon={faGrip} /></MenuElem>
+        <MenuElem className="nav-link" to='friends' onClick={() => showPage("Friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem>
+        <MenuElem className="nav-link" to='notifications' onClick={() => showPage("Notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
+        <MenuElem className="nav-link" to='settings' onClick={() => showPage("Settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem>
+        <MenuElem className="nav-link" to='profile' onClick={() => showPage("Profile")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
       </MenuWrapper>
     </Wrapper >
   )
@@ -83,12 +83,12 @@ const Wrapper = styled.div`
   display: block;
 `
 
-const MenuWrapper = styled.div<IMenu> `
+const MenuWrapper = styled.div<IType> `
   display: flex;
   border-radius: 4px;
-  ${({ showMenu }) => (showMenu ? long : short)}
+  ${({ type }) => (type === 'long' ? long : short)}
   `
-const MenuElem = styled(NavLink) <IMenu>`
+const MenuElem = styled(NavLink) <IType>`
   text-decoration: none;
   color: white;
   padding: 15px 13px;
@@ -96,7 +96,7 @@ const MenuElem = styled(NavLink) <IMenu>`
   font-size: 40px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0);
-  ${({ showMenu }) => (showMenu ? longME : shortME)}
+  ${({ type }) => (type === 'long' ? longME : shortME)}
 
     &:hover{
       border-radius: 4px;
