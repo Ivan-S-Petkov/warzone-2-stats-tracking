@@ -7,6 +7,10 @@ import { AppContext } from './Providers/global';
 import LongMenu from './modules/Header/components/LongMenu';
 import Home from './modules/Home';
 import { Routes, Route } from 'react-router-dom'
+import Hot from './modules/Home/comp/Hot';
+import Games from './modules/Home/comp/Games';
+import Message from './modules/Home/comp/Message';
+import { faColumns } from '@fortawesome/free-solid-svg-icons';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -17,21 +21,27 @@ function App() {
   const { showMenu, menuOff } = useContext(AppContext);
 
   return (
-    <div>
+    <Wrapper>
       <GlobalStyle />
       <Header />
       <LongMenu />
       <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="" element={<Home />} >
+          <Route index element={<Message />} />
+          <Route path="message" element={<Message />} />
+          <Route path="hot" element={<Hot />} />
+          <Route path="games" element={<Games />} />
+        </Route>
       </Routes>
-    </div>
+    </Wrapper>
   );
 }
 
 const GlobalStyle = createGlobalStyle`
    body {
     max-width: 2560px;
+    min-height: 100vh;
     background-image: url(${background});
     background-size: cover;
     color: lightgrey;
@@ -39,6 +49,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Kanit', sans-serif;
    }
 `;
+
+const Wrapper = styled.div`
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+`
 
 const LongMenuBackground = styled.div<IShowMenu> `
 top: 0px;

@@ -14,7 +14,7 @@ export const AppContext = createContext<IApp>({
 
 function AppContextProvider({ children }: { children: any }) {
 
-    const [showMenu, setShowMenu] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
     const menuOn = () => { setShowMenu(true) }
     const menuOff = () => { setShowMenu(false) }
 
