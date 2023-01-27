@@ -1,16 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink, useMatch } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function Navigation() {
 
-  const hot = useMatch("/hot");
-  const games = useMatch("/games");
+  const url: string = useLocation().pathname;
+  const links: Array<string> = ['hot', 'games'];
+  let activeHome: boolean = false;
+
+  if (links.some((v: string) => url.includes(v))) {
+    activeHome = true;
+  }
 
   return (
     <Wrapper>
       <Nav>
-        <LinkElem className={Boolean(hot) || Boolean(games) ? "active nav-link" : "nav-link"} to='' >HOME</LinkElem>
+        <LinkElem className={Boolean(activeHome) ? "active nav-link" : "nav-link"} to='' >HOME</LinkElem>
         <LinkElem className="nav-link" to='battlepass'>BATTLEPASS</LinkElem>
         <LinkElem className="nav-link" to='store'>STORE</LinkElem>
       </Nav>

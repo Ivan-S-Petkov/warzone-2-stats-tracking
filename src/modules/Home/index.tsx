@@ -1,13 +1,24 @@
+import React from 'react';
 import SideMenu from "./comp/SideMenu";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import React, { useEffect } from 'react';
 import ReactScrollWheelHandler from "react-scroll-wheel-handler";
 import styled from "styled-components";
+import { isMobileOnly, useMobileOrientation } from 'react-device-detect';
 
 function Home() {
 
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const { isLandscape } = useMobileOrientation()
+
+    if (isMobileOnly) {
+        throw new Error('We are sorry but this app is not mobile Friendly! Please switch to Desktop ot Tablet version.');
+    }
+    else {
+        if (!isLandscape) {
+            throw new Error('Please switch to Landscape orientation for best UX.');
+        }
+    }
 
     function scrollHandler(direction: string, currentPath: string) {
 

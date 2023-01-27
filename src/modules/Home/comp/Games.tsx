@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Box from './Box'
 
 function Games() {
+
     return (
         <Wrapper>
             <Line />
@@ -59,7 +60,7 @@ const Label = styled(NavLink)`
 
 `
 const Line = styled.div`
-    margin: 42px 20px 300px 20px;
+    margin: 54px 20px 300px 20px;
     border-right: rgba(80, 80, 80, 0.9) solid 2px;
     display: flex;
     flex-direction: column;

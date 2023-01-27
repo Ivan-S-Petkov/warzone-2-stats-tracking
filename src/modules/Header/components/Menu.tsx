@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrip, faHeadset, faGear, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
-import { NavLink } from "react-router-dom";
 
 interface IType {
   type: string,
@@ -11,20 +10,20 @@ interface IType {
 
 function MenuNav(props: { type: string }) {
 
-  const { menuOn } = useContext(AppContext);
+  const { menuOn, component, showComponent } = useContext(AppContext);
 
   function showPage(page: string): void {
-    console.log(page);
+    showComponent(page);
   }
 
   return (
     <Wrapper onClick={() => menuOn()}>
       <MenuWrapper type={props.type}>
-        <MenuElem className="nav-link" to='grids' onClick={() => showPage("Grid")} type={props.type}><FontAwesomeIcon icon={faGrip} /></MenuElem>
-        <MenuElem className="nav-link" to='friends' onClick={() => showPage("Friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem>
-        <MenuElem className="nav-link" to='notifications' onClick={() => showPage("Notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
-        <MenuElem className="nav-link" to='settings' onClick={() => showPage("Settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem>
-        <MenuElem className="nav-link" to='profile' onClick={() => showPage("Profile")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
+        <MenuElem className={component === 'grid' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("grid")} type={props.type}><FontAwesomeIcon icon={faGrip} /></MenuElem>
+        <MenuElem className={component === 'griends' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem>
+        <MenuElem className={component === 'notifications' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
+        <MenuElem className={component === 'settings' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem>
+        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
       </MenuWrapper>
     </Wrapper >
   )
@@ -88,7 +87,8 @@ const MenuWrapper = styled.div<IType> `
   border-radius: 4px;
   ${({ type }) => (type === 'long' ? long : short)}
   `
-const MenuElem = styled(NavLink) <IType>`
+
+const MenuElem = styled.a <IType>`
   text-decoration: none;
   color: white;
   padding: 15px 13px;

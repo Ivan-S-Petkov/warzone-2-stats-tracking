@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
+import User from 'src/modules/User';
 import { AppContext } from 'src/Providers/global';
 import styled from 'styled-components'
-import MenuNav from './MenuNav'
-
-interface iShow {
-  showSideMenu: boolean,
-}
+import MenuNav from '../Header/components/Menu'
+import Friends from './components/Friends';
+import Grid from './components/Grid';
+import Notifications from './components/Notifications';
+import Settings from './components/Settings';
 
 function LongMenu() {
 
-  const { showMenu } = useContext(AppContext);
+  const { showMenu, component } = useContext(AppContext);
 
   return (
     <LongMenuWrapper showSideMenu={showMenu}>
@@ -17,7 +18,11 @@ function LongMenu() {
         <MenuNav type='long' />
       </Section>
       <Section>
-
+        {component === 'grid' ? <Grid /> : null}
+        {component === 'friends' ? <Friends /> : null}
+        {component === 'notifications' ? <Notifications /> : null}
+        {component === 'settings' ? <Settings /> : null}
+        {component === 'user' ? <User /> : null}
       </Section>
       <Section>
         React
@@ -26,7 +31,7 @@ function LongMenu() {
   )
 }
 
-const LongMenuWrapper = styled.div<iShow>`
+const LongMenuWrapper = styled.div<{ showSideMenu: boolean }>`
   z-index:2;
   top: 0px;
   right: 40px;

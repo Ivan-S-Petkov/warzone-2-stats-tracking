@@ -4,13 +4,13 @@ import './App.css';
 import Header from './modules/Header';
 import styled, { createGlobalStyle } from "styled-components";
 import { AppContext } from './Providers/global';
-import LongMenu from './modules/Header/components/LongMenu';
+import LongMenu from './modules/RightSideMenu';
 import Home from './modules/Home';
 import { Routes, Route } from 'react-router-dom'
 import Hot from './modules/Home/comp/Hot';
 import Games from './modules/Home/comp/Games';
 import Message from './modules/Home/comp/Message';
-import { faColumns } from '@fortawesome/free-solid-svg-icons';
+import ErrorBoundary from './modules/common/ErrorBoundary';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -26,14 +26,16 @@ function App() {
       <Header />
       <LongMenu />
       <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
-      <Routes>
-        <Route path="" element={<Home />} >
-          <Route index element={<Message />} />
-          <Route path="message" element={<Message />} />
-          <Route path="hot" element={<Hot />} />
-          <Route path="games" element={<Games />} />
-        </Route>
-      </Routes>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="" element={<Home />} >
+            <Route index element={<Message />} />
+            <Route path="message" element={<Message />} />
+            <Route path="hot" element={<Hot />} />
+            <Route path="games" element={<Games />} />
+          </Route>
+        </Routes>
+      </ErrorBoundary>
     </Wrapper>
   );
 }
@@ -41,6 +43,7 @@ function App() {
 const GlobalStyle = createGlobalStyle`
    body {
     max-width: 2560px;
+    min-width: 100vw;
     min-height: 100vh;
     background-image: url(${background});
     background-size: cover;

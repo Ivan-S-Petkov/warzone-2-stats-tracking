@@ -2,27 +2,23 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NavLink, } from 'react-router-dom'
 
-interface ISideMenu {
-    sideMenu: boolean;
-}
-
 function SideMenu() {
 
-    const [sideMenu, setSideMenu] = useState(false);
+    const [showSideMenu, setShowSideMenu] = useState(0);
 
     function showSideLinks() {
-        setSideMenu(true);
+        setShowSideMenu(1);
     }
 
     function hideSideLinks() {
-        setSideMenu(false);
+        setShowSideMenu(0);
     }
 
     return (
         <Wrapper onMouseOver={() => showSideLinks()} onMouseLeave={() => hideSideLinks()}>
-            <SideLink className="nav-link" to='' sideMenu={sideMenu}>{sideMenu ? 'MESSAGE OF THE DAY' : ' '}</SideLink>
-            <SideLink className="nav-link" to='hot' sideMenu={sideMenu}>{sideMenu ? 'WHAT\'S HOT' : ' '}</SideLink>
-            <SideLink className="nav-link" to='games' sideMenu={sideMenu}>{sideMenu ? 'GAMES' : ' '}</SideLink>
+            <SideLink className="nav-link" to='' menu={showSideMenu}>{showSideMenu ? 'MESSAGE OF THE DAY' : ' '}</SideLink>
+            <SideLink className="nav-link" to='hot' menu={showSideMenu}>{showSideMenu ? 'WHAT\'S HOT' : ' '}</SideLink>
+            <SideLink className="nav-link" to='games' menu={showSideMenu}>{showSideMenu ? 'GAMES' : ' '}</SideLink>
         </Wrapper>
     )
 }
@@ -37,10 +33,10 @@ const Wrapper = styled.div`
     transform: translate(0, -50%);
 `
 
-const SideLink = styled(NavLink) <ISideMenu>`
+const SideLink = styled(NavLink) < { menu: number }> `
     background-color: rgba(158,158,158,1);
     text-decoration: none;
-    padding: ${({ sideMenu }) => sideMenu ? '30px 40px' : '30px 1px'};
+    padding: ${({ menu }) => menu ? '30px 40px' : '30px 1px'};
     font-size: 24px;
     color: white;
     margin: 2px 0px;
