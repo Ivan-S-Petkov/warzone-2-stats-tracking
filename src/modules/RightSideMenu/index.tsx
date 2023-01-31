@@ -34,7 +34,7 @@ function LongMenu() {
 const LongMenuWrapper = styled.div<{ showSideMenu: boolean }>`
   z-index:2;
   top: 0px;
-  right: 40px;
+  right: 2vw;
   min-width: 250px;
   width: 25%;
   height: 100%;

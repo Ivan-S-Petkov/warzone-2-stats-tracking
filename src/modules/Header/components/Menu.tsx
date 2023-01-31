@@ -53,8 +53,8 @@ const shortME = css`
 
 const longME = css`
   color: white;
-  margin: 0px 13px;
-  padding: 15px 25px;
+  margin: 0px 0.2vw;
+  padding: 1vh 1vw;
 
   &:first-of-type{
     margin-left: 0px;
@@ -93,7 +93,7 @@ const MenuElem = styled.a <IType>`
   color: white;
   padding: 15px 13px;
   display: flex;
-  font-size: 40px;
+  font-size: 2vw;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0);
   ${({ type }) => (type === 'long' ? longME : shortME)}

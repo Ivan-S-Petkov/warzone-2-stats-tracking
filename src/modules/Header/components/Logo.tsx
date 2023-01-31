@@ -9,11 +9,13 @@ function Logo() {
 }
 
 const LogoWrapper = styled.div`
-padding-left: 50px;
+padding-left: 2vw;
 `;
 
 const Image = styled.img`
   max-height: 90px;
+  width: auto;
+  max-width: 13vw;
 `;
 
 export default Logo

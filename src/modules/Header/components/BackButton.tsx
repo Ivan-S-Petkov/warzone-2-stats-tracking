@@ -16,23 +16,30 @@ function BackButton() {
   const visible: string = showBackButton(location.pathname);
 
   return (
-    <Button onClick={() => navigate(-1)} visible={visible}>
-      <FontAwesomeIcon icon={faChevronLeft} />
-    </Button >
+    <Wrapper>
+      <Button onClick={() => navigate(-1)} visible={visible}>
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </Button >
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  display:flex;
+  align-items: center;
+  `
 
 const Button = styled.div<IButton>`
   background: rgb(70, 70, 70, 0.6);
   border: 1px solid rgba(70, 70, 70, 1);
   border-radius: 5px;
-  width: 50px;
-  height: 50px;
-  font-size: 35px;
+  padding: 12px 9px;
+  font-size: 2vw;
   visibility: ${props => props.visible};
   display: flex;
   justify-content: center;
   align-items: center;
+
 
   &:hover {
     background: linear-gradient(
