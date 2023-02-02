@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import './utils/firebase';
 import background from './images/background1.jpg';
 import './App.css';
 import Header from './modules/Header';
@@ -71,7 +72,5 @@ z-index: 1;
 visibility:  ${({ showMenu }) => (showMenu ? 'visible' : 'hidden')};
 background-color: rgba(0,0,0,0.5);
 `
-
-
 
 export default App;

@@ -51,7 +51,7 @@ display: flex;
 
 const Line = styled.div`
 border-left: 1px solid gray;
-margin-bottom:3%;
+margin-bottom:2.5vh;
 `
 
 const ErrorWrapper = styled.div`
@@ -60,19 +60,21 @@ const ErrorWrapper = styled.div`
 `
 
 const ErrorText = styled.div`
-    margin-top: 17px;
+    margin-top: 3vh;
+    width: 10vw;
     background-color: rgba(80, 80, 80, 0.98);
-    padding: 4px 14px 4px 34px;
+    padding: 4px 14px 4px 2vw;
     border-left: 3px solid gray;
-    font-size: 22px;
+    font-size: min(22px, 3.5vw);
     position: relative;
     left: -2px;
 `
 
 const Message = styled.div`
-    margin-top: 15%;
-    padding-left: 34px;
-    font-size: 18px;
+    margin-top: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    font-size: min(18px, 3vw);
     color: rgba(200, 200, 200, 0.98);
     flex-grow: 1;
 `
@@ -81,7 +83,7 @@ const Cross = styled.div`
     width: 13px;
     height: 13px;
     position: relative;
-    bottom: 7%;
+    bottom: 2.5vh;
     left: -7px;
 
 
@@ -117,7 +119,7 @@ const Button = styled.div`
     );
     border: 1px solid  rgba(100, 100, 100, 0.6);
     border-radius: 4px;
-    width: 140px;
+    width: 20vw;
 
     :hover {
         background-color: rgba(120, 255, 120, 1);

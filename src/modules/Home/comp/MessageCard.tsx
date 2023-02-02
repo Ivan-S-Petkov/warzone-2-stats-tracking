@@ -30,7 +30,7 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     width: 35%;
-    font-size: 22px;
+    font-size:min(22px, 1.5vw, 2vh);
 
     p{
         margin: 0px;

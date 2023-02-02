@@ -64,8 +64,8 @@ const StyledReactScrollWheelHandler = styled(ReactScrollWheelHandler)`
 
 const Content = styled.div`
     flex-grow: 1;
-    margin-left: 110px;
-    margin-top: 40px;
+    margin-left: 7vw;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
 `

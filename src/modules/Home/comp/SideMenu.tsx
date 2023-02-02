@@ -36,8 +36,8 @@ const Wrapper = styled.div`
 const SideLink = styled(NavLink) < { menu: number }> `
     background-color: rgba(158,158,158,1);
     text-decoration: none;
-    padding: ${({ menu }) => menu ? '30px 40px' : '30px 1px'};
-    font-size: 24px;
+    padding: ${({ menu }) => menu ? 'min(28px, 3.5vh) min(30px, 3vh)' : 'min(28px, 3.5vh) .1vw'};
+    font-size:min(28px, 1.6vw);
     color: white;
     margin: 2px 0px;
     border-radius: 4px;

@@ -35,7 +35,7 @@ const Nav = styled.div`
 
 const LinkElem = styled(NavLink)`
   padding: 2px 15px;
-  font-size: min(45px, 1.6vw);
+  font-size: min(28px,1.6vw);
   font-weight: 500;
   text-decoration: none;
   color: white;

@@ -14,7 +14,7 @@ function Box() {
 }
 
 const Wrapper = styled.div`
-    height: 23%;
+    height: 20vh;
     width: 20%;
     border-radius: 4px;
     box-sizing: border-box;
@@ -25,8 +25,8 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.div`
-    height: 85%;
-    margin: 7px 1px 15px 1px;
+    height: 18vh;
+    margin: 0.5vh 1px 1vh 1px;
     color:white;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@ const Content = styled.div`
     background-size: cover;
     justify-content:end;
     align-items: center;
-    font-size: 35px;
+    font-size: min(35px, 2vw);
     border-radius: 2px;
 
     :hover{
@@ -47,7 +47,7 @@ const Content = styled.div`
 
     p{
         margin: 0px 0px 10px 0px;
-        font-size: 25px;
+        font-size: min(25px, 1.4vw);
     }
 `
 
