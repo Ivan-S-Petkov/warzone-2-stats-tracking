@@ -55,7 +55,7 @@ const Section = styled.div`
 
   :first-of-type{
   background-color: rgba(90,90,90,1);
-  height:130px;
+  height:10vh;
   }
   
   :nth-of-type(2){
@@ -67,7 +67,7 @@ const Section = styled.div`
   :last-of-type{
   bottom: 0px;
   background-color: rgba(60,60,60,1);
-  height:130px;
+  height:10vh;
   }
 `
 
