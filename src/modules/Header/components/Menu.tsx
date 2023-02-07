@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrip, faHeadset, faGear, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
-import UserContextProvider from 'src/Providers/user';
+import { UserContext } from 'src/Providers/user';
 
 interface IType {
   type: string,
@@ -12,23 +12,22 @@ interface IType {
 function MenuNav(props: { type: string }) {
 
   const { menuOn, component, showComponent } = useContext(AppContext);
+  const { authenticated } = useContext(UserContext);
 
   function showPage(page: string): void {
     showComponent(page);
   }
 
   return (
-    <UserContextProvider>
-      <Wrapper onClick={() => menuOn()}>
-        <MenuWrapper type={props.type}>
-          <MenuElem className={component === 'grid' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("grid")} type={props.type}><FontAwesomeIcon icon={faGrip} /></MenuElem>
-          <MenuElem className={component === 'griends' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem>
-          <MenuElem className={component === 'notifications' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
-          <MenuElem className={component === 'settings' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem>
-          <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
-        </MenuWrapper>
-      </Wrapper >
-    </UserContextProvider>
+    <Wrapper onClick={() => menuOn()}>
+      <MenuWrapper type={props.type}>
+        <MenuElem className={component === 'grid' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("grid")} type={props.type}><FontAwesomeIcon icon={faGrip} /></MenuElem>
+        {authenticated ? <MenuElem className={component === 'friends' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem> : null}
+        <MenuElem className={component === 'notifications' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
+        {authenticated ? <MenuElem className={component === 'settings' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem> : null}
+        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
+      </MenuWrapper>
+    </Wrapper >
   )
 }
 

@@ -12,6 +12,7 @@ import Hot from './modules/Home/comp/Hot';
 import Games from './modules/Home/comp/Games';
 import Message from './modules/Home/comp/Message';
 import ErrorBoundary from './modules/common/ErrorBoundary';
+import UserContextProvider, { UserContext } from './Providers/user';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -23,20 +24,22 @@ function App() {
 
   return (
     <Wrapper>
-      <GlobalStyle />
-      <Header />
-      <LongMenu />
-      <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
-      <ErrorBoundary>
-        <Routes>
-          <Route path="" element={<Home />} >
-            <Route index element={<Message />} />
-            <Route path="message" element={<Message />} />
-            <Route path="hot" element={<Hot />} />
-            <Route path="games" element={<Games />} />
-          </Route>
-        </Routes>
-      </ErrorBoundary>
+      <UserContextProvider>
+        <GlobalStyle />
+        <Header />
+        <LongMenu />
+        <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
+        <ErrorBoundary>
+          <Routes>
+            <Route path="" element={<Home />} >
+              <Route index element={<Message />} />
+              <Route path="message" element={<Message />} />
+              <Route path="hot" element={<Hot />} />
+              <Route path="games" element={<Games />} />
+            </Route>
+          </Routes>
+        </ErrorBoundary>
+      </UserContextProvider>
     </Wrapper>
   );
 }
@@ -72,5 +75,6 @@ z-index: 1;
 visibility:  ${({ showMenu }) => (showMenu ? 'visible' : 'hidden')};
 background-color: rgba(0,0,0,0.5);
 `
+
 
 export default App;
