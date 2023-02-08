@@ -12,7 +12,7 @@ export const Header = styled.div`
   border-bottom: 1px solid rgba(130, 130, 130, 1);
   font-size: min(24px, 1.5vw);
   letter-spacing: 0.1vw;
-  margin: 1vh 0;
+  padding: 0.6vh 0;
 `;
 
 export const Content = styled.div`
@@ -53,6 +53,27 @@ export const Button = styled.div`
   padding: 5px;
   color: #ffffff;
   background-color: #242424;
+  border: 1px solid #81898c;
+  border-radius: 3px;
+  justify-content: center;
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(130, 130, 130, 1);
+    border: 1px solid #81898c;
+    color: #ffffff;
+  }
+`;
+
+export const ForgotButton = styled.div`
+  box-sizing: border-box;
+  margin-top: 2vh;
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 5px;
+  color: #ffffff;
   border: 1px solid #81898c;
   border-radius: 3px;
   justify-content: center;

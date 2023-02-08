@@ -12,7 +12,7 @@ import Hot from './modules/Home/comp/Hot';
 import Games from './modules/Home/comp/Games';
 import Message from './modules/Home/comp/Message';
 import ErrorBoundary from './modules/common/ErrorBoundary';
-import UserContextProvider, { UserContext } from './Providers/user';
+import UserContextProvider from './Providers/user';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -27,9 +27,9 @@ function App() {
       <UserContextProvider>
         <GlobalStyle />
         <Header />
-        <LongMenu />
-        <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
         <ErrorBoundary>
+          <LongMenu />
+          <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
           <Routes>
             <Route path="" element={<Home />} >
               <Route index element={<Message />} />

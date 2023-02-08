@@ -1,8 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { faFacebookSquare, faGoogle, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-
 import { UserContext } from 'src/Providers/user';
 import Profile from './components/Profile';
 import Auth from './components/Auth';

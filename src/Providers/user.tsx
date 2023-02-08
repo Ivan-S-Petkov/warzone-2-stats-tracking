@@ -1,5 +1,7 @@
-import React, { useState, useCallback, createContext, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, User } from "firebase/auth";
+import React, { useState, createContext, useEffect, useContext } from 'react';
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './global';
 
 
 const auth = getAuth();
@@ -20,8 +22,10 @@ export const UserContext = createContext<IUser>({
 function UserContextProvider({ children }: { children: any }) {
 
     const [user, setUser] = useState(null);
-
     const [loadingAuthState, setLoadingAuthState] = useState(true);
+
+    const navigate = useNavigate();
+    const { menuOff } = useContext(AppContext)
 
     const contextValue = {
         user: null,
@@ -33,11 +37,10 @@ function UserContextProvider({ children }: { children: any }) {
         const unsubscribe = onAuthStateChanged(auth, (user: any) => {
             if (user) {
                 setUser(user);
-                console.log(user);
-
             } else {
-                console.log(user);
                 setUser(null);
+                menuOff();
+                navigate('/');
             }
             setLoadingAuthState(false);
         });
