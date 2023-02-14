@@ -6,6 +6,10 @@ interface IApp {
     showComponent(comp: string): void;
     menuOn(): void;
     menuOff(): void;
+    menuError: { name: string, message: string } | null;
+    setMenuError(err: { name: string, message: string } | null): void;
+    showMenuError: boolean;
+
 }
 
 export const AppContext = createContext<IApp>({
@@ -14,6 +18,9 @@ export const AppContext = createContext<IApp>({
     showComponent: () => { },
     menuOn: () => { },
     menuOff: () => { },
+    menuError: { name: '', message: '' },
+    setMenuError: () => { },
+    showMenuError: false,
 });
 
 function AppContextProvider({ children }: { children: any }) {
@@ -23,6 +30,7 @@ function AppContextProvider({ children }: { children: any }) {
     const showComponent = (comp: string) => { setComponent(comp) }
     const menuOn = () => { setShowMenu(true) }
     const menuOff = () => { setShowMenu(false) }
+    const [menuError, setMenuError] = useState<{ name: string, message: string } | null>(null);
 
     const contextValue = {
         showMenu,
@@ -30,6 +38,9 @@ function AppContextProvider({ children }: { children: any }) {
         showComponent: useCallback((comp: string) => showComponent(comp), []),
         menuOn: useCallback(() => menuOn(), []),
         menuOff: useCallback(() => menuOff(), []),
+        menuError,
+        setMenuError: useCallback((err: { name: string, message: string } | null) => setMenuError(err), []),
+        showMenuError: menuError !== null,
     };
 
     return (

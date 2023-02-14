@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { Wrapper, Header, Content, Button, Alternatives, ForgotButton } from './common.styled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookSquare, faGoogle, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-import { singInHandle, singUpHandle, providerSignIn, resetPassword } from "../utils/firebase";
+import React, { useContext, useState } from 'react'
+import { Wrapper, Header, ContentForm, Button, ForgotButton } from './common.styled';
+import { singInHandle, singUpHandle, resetPassword } from "../utils/firebase";
+import { AppContext } from 'src/Providers/global';
+import SignInMethods from './SignInMethods';
 
 
 function Auth() {
@@ -13,13 +13,50 @@ function Auth() {
 
     const onChange = (type: string, event: any) => type === 'email' ? setEmail(event.target.value) : setPassword(event.target.value);
 
+    const { setMenuError } = useContext(AppContext);
+
+
     const toggleAuthTypeHandler = () => { setToggleAuthType(!toggleAuthType) }
+
+    const submitHandler = (e: any) => {
+        e.preventDefault()
+        if (email === '' || password === '') {
+            setMenuError({ name: 'Error', message: 'Email and Password should not be empty.' });
+        }
+        else {
+            const message = toggleAuthType ? singUpHandle(email, password) : singInHandle(email, password);
+            message.then((res) => {
+                if (res) {
+                    let name = 'Error';
+                    let message = res.replace('Firebase: Error ', '');
+                    setMenuError({ name, message });
+                }
+            })
+        }
+    }
+
+    const resetPasswordHandler = (e: any) => {
+        e.preventDefault();
+
+        if (email === '') {
+            setMenuError({ name: 'Error', message: 'Email should not be empty.' });
+        }
+        else {
+            resetPassword(email).then((res) => {
+                if (res) {
+                    let name = 'Error';
+                    let message = res.replace('Firebase: Error ', '');
+                    setMenuError({ name, message });
+                }
+            })
+        }
+    }
 
 
     return (
-        <Wrapper onKeyDown={(e) => e.key === 'Enter' ? toggleAuthType ? singUpHandle(e, email, password) : singInHandle(e, email, password) : null}>
+        <Wrapper>
             <Header>{toggleAuthType ? "SIGN UP" : "SIGN IN TO YOUR ACCOUNT"} </Header>
-            <Content >
+            <ContentForm onSubmit={submitHandler}>
                 <p>Email Address</p>
                 <input
                     type="text"
@@ -32,18 +69,14 @@ function Auth() {
                     value={password}
                     onChange={(e) => onChange('password', e)}
                 />
-                {toggleAuthType ? <Button onClick={(e) => singUpHandle(e, email, password)}>SIGN UP</Button> : <Button onClick={(e) => singInHandle(e, email, password)} > SIGN IN</Button>}
-                {!toggleAuthType ? <ForgotButton onClick={(e) => resetPassword(e, email)}>Forgot your Password?</ForgotButton> : null}
+                <Button type='submit'> {toggleAuthType ? 'SIGN UP' : 'SIGN IN'} </Button>
+                {!toggleAuthType ? <ForgotButton onClick={resetPasswordHandler}>Forgot your Password?</ForgotButton> : null}
                 {!toggleAuthType ? <h2>OR</h2> : null}
                 {!toggleAuthType ?
-                    <Alternatives>
-                        <FontAwesomeIcon onClick={(e) => providerSignIn(e, 'facebook')} icon={faFacebookSquare} />
-                        <FontAwesomeIcon onClick={(e) => providerSignIn(e, 'google')} icon={faGoogle} />
-                        <FontAwesomeIcon onClick={(e) => providerSignIn(e, 'twitter')} icon={faTwitterSquare} />
-                    </Alternatives> : null}
+                    <SignInMethods /> : null}
 
-                {toggleAuthType ? <Button onClick={toggleAuthTypeHandler}>Already have an Account? Sign In </Button> : <Button onClick={toggleAuthTypeHandler}>Don't have an Account? Sign Up</Button>}
-            </Content>
+                {toggleAuthType ? <Button type='button' onClick={toggleAuthTypeHandler}>Already have an Account? Sign In </Button> : <Button type='button' onClick={toggleAuthTypeHandler}>Don't have an Account? Sign Up</Button>}
+            </ContentForm>
         </ Wrapper >
     )
 }

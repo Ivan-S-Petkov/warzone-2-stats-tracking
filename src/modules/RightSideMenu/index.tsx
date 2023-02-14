@@ -3,6 +3,7 @@ import User from 'src/modules/User';
 import { AppContext } from 'src/Providers/global';
 import styled from 'styled-components'
 import MenuNav from '../Header/components/Menu'
+import MenuError from './components/MenuError';
 import Friends from './components/Friends';
 import Grid from './components/Grid';
 import Notifications from './components/Notifications';
@@ -10,7 +11,7 @@ import Settings from './components/Settings';
 
 function LongMenu() {
 
-  const { showMenu, component } = useContext(AppContext);
+  const { showMenu, component, showMenuError } = useContext(AppContext);
 
   return (
     <LongMenuWrapper showSideMenu={showMenu}>
@@ -18,6 +19,7 @@ function LongMenu() {
         <MenuNav type='long' />
       </Section>
       <Section>
+        {showMenuError ? <MenuError /> : null}
         {component === 'grid' ? <Grid /> : null}
         {component === 'friends' ? <Friends /> : null}
         {component === 'notifications' ? <Notifications /> : null}

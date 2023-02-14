@@ -7,7 +7,7 @@ import { AppContext } from './global';
 const auth = getAuth();
 
 interface IUser {
-    user: User | null;
+    user: any | null;
     authenticated: boolean;
     loadingAuthState: boolean;
 }
@@ -28,7 +28,7 @@ function UserContextProvider({ children }: { children: any }) {
     const { menuOff } = useContext(AppContext)
 
     const contextValue = {
-        user: null,
+        user: user,
         authenticated: user !== null,
         loadingAuthState: false,
     };

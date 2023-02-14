@@ -42,7 +42,8 @@ export const ContentForm = styled.form`
     font-size: max(14px, 0.8vw);
   }
 
-  input {
+  input,
+  select {
     background-color: #d8d8d8 !important;
     display: inline-block;
     width: 100%;
@@ -76,43 +77,5 @@ export const Button = styled.button`
     background-color: rgba(130, 130, 130, 1);
     border: 1px solid #81898c;
     color: #ffffff;
-  }
-`;
-
-export const ForgotButton = styled.div`
-  box-sizing: border-box;
-  margin-top: 2vh;
-  display: flex;
-  width: 100%;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 5px;
-  color: #ffffff;
-  border: 1px solid #81898c;
-  border-radius: 3px;
-  justify-content: center;
-  cursor: pointer;
-
-  :hover {
-    background-color: rgba(130, 130, 130, 1);
-    border: 1px solid #81898c;
-    color: #ffffff;
-  }
-`;
-
-export const Alternatives = styled.div`
-  display: flex;
-  font-size: min(50px, 3vw);
-
-  svg {
-    padding: 1vh 1vw;
-    margin: 0px 1px;
-    border-radius: 3px;
-    cursor: pointer;
-
-    :hover {
-      background-color: rgba(130, 130, 130, 1);
-      color: white;
-    }
   }
 `;

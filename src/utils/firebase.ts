@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,6 +16,8 @@ const firebaseConfig = {
   messagingSenderId: '789140469371',
   appId: '1:789140469371:web:a59b0384c1dfd0707094de',
   measurementId: 'G-791HQF4K2Q',
+  databaseURL:
+    'https://warzone-2-6416c-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
 // Initialize Firebase
@@ -23,3 +26,6 @@ const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
+
+// Initialize Realtime Database and get a reference to the service
+const database = getDatabase(app);
