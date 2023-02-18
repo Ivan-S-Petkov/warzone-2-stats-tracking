@@ -39,7 +39,13 @@ function AppContextProvider({ children }: { children: any }) {
         menuOn: useCallback(() => menuOn(), []),
         menuOff: useCallback(() => menuOff(), []),
         menuError,
-        setMenuError: useCallback((err: { name: string, message: string } | null) => setMenuError(err), []),
+        setMenuError: useCallback((err: { name: string, message: string } | null) => {
+            setMenuError(err);
+
+            setTimeout(() => {
+                setMenuError(null);
+            }, 5000);
+        }, []),
         showMenuError: menuError !== null,
     };
 

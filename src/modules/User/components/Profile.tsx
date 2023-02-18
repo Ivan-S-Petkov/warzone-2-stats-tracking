@@ -3,11 +3,12 @@ import { Wrapper, Header, Content, Button } from './common.styled';
 import { logOutHandle } from '../utils/firebase';
 import { UserContext } from 'src/Providers/user'
 import { AppContext } from 'src/Providers/global';
+import styled from 'styled-components';
 
 function Profile() {
 
     const { authenticated, user } = useContext(UserContext);
-    const { setMenuError } = useContext(AppContext);
+    const { setMenuError, showComponent } = useContext(AppContext);
 
     const logOutHandler = (e: any) => {
         e.preventDefault();
@@ -21,21 +22,26 @@ function Profile() {
         });
     }
 
-    console.log(user);
+
 
 
     return (
         <Wrapper>
             <Header>Profile</Header>
             <Content>
-                <p>Welcome, {user.displayName ? user.displayName : 'Solder'}</p>
+                <p>Welcome, {user ? user.name || 'Solder' : 'Solder'}</p>
 
-                <p>To start with you have to enter your gaming account. This could be done in the settings menu, where you could customize even more features. </p>
+                <p>To start with you have to enter your gaming account. This could be done in the <Ref onClick={() => showComponent("settings")}>settings</Ref> menu, where you could customize even more features. </p>
                 {authenticated ? <Button onClick={logOutHandler}> LOG OUT</Button> : null}
 
             </Content>
         </Wrapper >
     )
 }
+
+const Ref = styled.i`
+    cursor: pointer;
+    text-transform: uppercase;
+`
 
 export default Profile

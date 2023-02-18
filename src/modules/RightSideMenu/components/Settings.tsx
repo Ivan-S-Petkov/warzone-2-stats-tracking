@@ -1,25 +1,22 @@
+import { stringify } from 'querystring';
 import React, { useContext, useState } from 'react'
+import { readUserData, updateUserData } from 'src/modules/User/api/firestore';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
 import { Button, ContentForm, Header, Wrapper } from './common.styled';
 
 function Settings() {
-    const { user } = useContext(UserContext);
+    const { user, setUserData } = useContext(UserContext);
     const { setMenuError } = useContext(AppContext);
 
-    const [email, setEmail] = useState(user.email || '');
-    const [name, setName] = useState(user.displayName || '');
-    const [accountType, setAccountType] = useState(user.AccountType || 'PSN');
-    const [accountName, setAccountName] = useState(user.AccountName || '');
+    const [name, setName] = useState(user!.name || '');
+    const [accountType, setAccountType] = useState(user!.accountType || 'PSN');
+    const [accountName, setAccountName] = useState(user!.accountName || '');
 
     function onChange(action: string, e: any): void {
         e.preventDefault();
 
         switch (action) {
-            case "email":
-                console.log("Email");
-                setEmail(e.target.value);
-                break;
             case 'name':
                 setName(e.target.value);
                 break;
@@ -35,41 +32,39 @@ function Settings() {
         }
     }
 
-    const saveGamingAccountHandler = (e: any) => {
+
+    const saveAccountHandler = (e: any) => {
         e.preventDefault();
+        let data: any = {
+            name,
+            accountType,
+            accountName,
+        };
 
-        if (accountType && accountName) {
-            //Write to the User DB
-        }
-        else {
-            setMenuError({ name: 'Error', message: 'Platform and Nickname are required' });
-        }
-
+        updateUserData(user!.id, data)
+            .then((res) => {
+                readUserData(user!.id)
+                    .then((res: any) => {
+                        setUserData(res);
+                        setMenuError({ name: 'Notification', message: 'Account details updated successful.' })
+                    })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
-    const saveEmailName = (e: any) => {
-        e.preventDefault();
-
-
-    }
 
     return (
         <Wrapper>
             <Header>Settings</Header>
-            <ContentForm>
-                <p>Email Address</p>
-                <input
-                    type="text"
-                    value={email}
-                    onChange={(e) => onChange('email', e)}
-                />
+            <ContentForm onSubmit={saveAccountHandler}>
                 <p>Name</p>
                 <input
                     type="text"
                     value={name}
                     onChange={(e) => onChange('name', e)}
                 />
-                <Button type='button' onClick={saveEmailName}>Save Profile</Button>
                 <p>Gaming Account</p>
                 <span>Platform</span>
                 <select value={accountType} onChange={(e) => onChange('accountType', e)}>
@@ -84,7 +79,7 @@ function Settings() {
                     value={accountName}
                     onChange={(e) => onChange('accountName', e)}
                 />
-                <Button type='button' onClick={saveGamingAccountHandler}>Save Gaming Account</Button>
+                <Button type='submit' >Save Account</Button>
             </ContentForm>
         </Wrapper>
     )
