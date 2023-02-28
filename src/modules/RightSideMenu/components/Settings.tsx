@@ -1,5 +1,5 @@
-import { stringify } from 'querystring';
 import React, { useContext, useState } from 'react'
+import { Me, platforms } from 'src/api/COD/call-of-duty';
 import { readUserData, updateUserData } from 'src/modules/User/api/firestore';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
@@ -10,7 +10,7 @@ function Settings() {
     const { setMenuError } = useContext(AppContext);
 
     const [name, setName] = useState(user!.name || '');
-    const [accountType, setAccountType] = useState(user!.accountType || 'PSN');
+    const [accountType, setAccountType] = useState(user!.accountType || platforms.Activision);
     const [accountName, setAccountName] = useState(user!.accountName || '');
 
     function onChange(action: string, e: any): void {
@@ -41,6 +41,17 @@ function Settings() {
             accountName,
         };
 
+        if (accountType && accountName) {
+            Me.codPoints(accountName, accountType)
+                .then((res) => {
+                    if (res.status === 'error') {
+                        setMenuError({ name: 'Error', message: 'Gaming Account information is incorrect.' });
+                        return;
+                    }
+
+                })
+        }
+
         updateUserData(user!.id, data)
             .then((res) => {
                 readUserData(user!.id)
@@ -68,10 +79,12 @@ function Settings() {
                 <p>Gaming Account</p>
                 <span>Platform</span>
                 <select value={accountType} onChange={(e) => onChange('accountType', e)}>
-                    <option value="PSN">PSN</option>
-                    <option value="XBOX">XBOX</option>
-                    <option value="Activision">Activision</option>
-                    <option value="Uno">Uno</option>
+                    <option value={platforms.Activision}>Activision</option>
+                    <option value={platforms.Battlenet}>Battlenet</option>
+                    <option value={platforms.Steam}>Stream</option>
+                    <option value={platforms.PSN}>PSN</option>
+                    <option value={platforms.XBOX}>XBOX</option>
+                    <option value={platforms.Uno}>Uno</option>
                 </select>
                 <span>Nickname</span>
                 <input
@@ -79,7 +92,7 @@ function Settings() {
                     value={accountName}
                     onChange={(e) => onChange('accountName', e)}
                 />
-                <Button type='submit' >Save Account</Button>
+                <Button type='submit'>Save Account</Button>
             </ContentForm>
         </Wrapper>
     )

@@ -21,7 +21,7 @@ export const Content = styled.div`
   width: 65%;
   align-self: center;
   align-items: center;
-  margin-top: 4vh;
+  margin-top: 1vh;
 
   p {
     margin-bottom: 5px;
@@ -35,7 +35,7 @@ export const ContentForm = styled.form`
   width: 65%;
   align-self: center;
   align-items: center;
-  margin-top: 4vh;
+  margin-top: 1 vh;
 
   p {
     margin-bottom: 5px;

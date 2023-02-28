@@ -1,8 +1,9 @@
 import React, { useState, createContext, useEffect, useContext, useCallback } from 'react';
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from './global';
 import { readUserData, writeUserData } from 'src/modules/User/api/firestore';
+import { login, platforms } from 'src/api/COD/call-of-duty';
 
 const auth = getAuth();
 
@@ -11,7 +12,7 @@ export interface UserDB {
     name: string,
     email: string,
     imageUrl: string,
-    accountType: string,
+    accountType: platforms,
     accountName: string,
     friends: []
 }
@@ -49,6 +50,10 @@ function UserContextProvider({ children }: { children: any }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user: any) => {
+            login(
+                'MTA4Mjc0MjU0Nzg5NDcyNDUwNDg6MTY1NTM4NTE3OTk1NToyN2ZlZTljZWUzMjllNTkxOTAzMTE5MDc5Njk1ZTYzYw'
+            );
+
             if (user) {
                 readUserData(user.uid)
                     .then((res: any) => {
