@@ -3,7 +3,7 @@ import { Me, platforms } from 'src/api/COD/call-of-duty';
 import { readUserData, updateUserData } from 'src/modules/User/api/firestore';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
-import { Button, ContentForm, Header, Wrapper } from './common.styled';
+import { Button, ContentForm, Header, Wrapper } from '../../components/common.styled';
 
 function Settings() {
     const { user, setUserData } = useContext(UserContext);

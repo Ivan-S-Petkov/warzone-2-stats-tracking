@@ -4,10 +4,10 @@ import { AppContext } from 'src/Providers/global';
 import styled from 'styled-components'
 import MenuNav from '../Header/components/Menu'
 import MenuError from './components/MenuError';
-import Friends from './components/Friends';
-import Grid from './components/Grid';
-import Notifications from './components/Notifications';
-import Settings from './components/Settings';
+import Friends from './modules/Friends/Friends';
+import Grid from './modules/Grid/Grid';
+import Notifications from './modules/Notifications/Notifications';
+import Settings from './modules/Settings/';
 
 function LongMenu() {
 
@@ -38,7 +38,7 @@ const LongMenuWrapper = styled.div<{ showSideMenu: boolean }>`
   top: 0px;
   right: 2vw;
   min-width: 250px;
-  width: 25%;
+  width: 30%;
   height: 100%;
   border-left: 2px solid rgba(130,130,130,1);
   border-right: 2px solid rgba(130,130,130,1);

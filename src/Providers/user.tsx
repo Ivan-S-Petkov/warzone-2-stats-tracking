@@ -14,27 +14,28 @@ export interface UserDB {
     imageUrl: string,
     accountType: platforms,
     accountName: string,
-    friends: []
+    friends: string[]
 }
 
 interface IUser {
-    user: UserDB | null;
+    user: UserDB;
     authenticated: boolean;
     loadingAuthState: boolean;
     setUserData(user: UserDB): void;
+    getUserData(id: string): void;
 }
 
 export const UserContext = createContext<IUser>({
-    user: null,
+    user: {} as UserDB,
     authenticated: false,
     loadingAuthState: true,
     setUserData: () => { },
+    getUserData: () => { },
 });
-
 
 function UserContextProvider({ children }: { children: any }) {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({} as UserDB);
     const [loadingAuthState, setLoadingAuthState] = useState(true);
 
     const navigate = useNavigate();
@@ -43,9 +44,17 @@ function UserContextProvider({ children }: { children: any }) {
 
     const contextValue = {
         user: user,
-        authenticated: user !== null,
+        authenticated: user.id !== undefined,
         loadingAuthState: false,
-        setUserData: useCallback((user: UserDB) => setUserData(user), [])
+        setUserData: useCallback((user: UserDB) => setUserData(user), []),
+        getUserData: useCallback((id: string) => {
+            readUserData(id)
+                .then((res: any) => {
+                    if (res) {
+                        setUser(res);
+                    }
+                })
+        }, [])
     };
 
     useEffect(() => {
@@ -75,7 +84,7 @@ function UserContextProvider({ children }: { children: any }) {
                         }
                     })
             } else {
-                setUser(null);
+                setUser({} as UserDB);
                 menuOff();
                 navigate('/');
             }

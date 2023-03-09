@@ -58,6 +58,33 @@ export const ContentForm = styled.form`
   }
 `;
 
+export const MenuNav = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 21px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0px 0.2vw;
+  padding: 1vh 1vw;
+  color: white;
+  background-color: rgba(118, 118, 118, 0.7);
+
+  &.active {
+    background-color: rgba(240, 240, 240, 0.9);
+    color: rgba(25, 25, 25, 0.8);
+  }
+
+  &:hover {
+    background-color: rgba(220, 220, 220, 0.8);
+    color: rgba(35, 35, 35, 0.65);
+  }
+`;
+
 export const Button = styled.button`
   box-sizing: border-box;
   margin-top: 2vh;
@@ -78,4 +105,10 @@ export const Button = styled.button`
     border: 1px solid #81898c;
     color: #ffffff;
   }
+`;
+
+export const NoResults = styled.div`
+  margin-top: 20px;
+  justify-self: center;
+  font-size: 28px;
 `;
