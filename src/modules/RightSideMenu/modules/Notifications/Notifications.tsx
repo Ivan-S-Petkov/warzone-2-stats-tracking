@@ -1,8 +1,14 @@
 import React from 'react'
+import { Content, Header, Wrapper } from '../../components/common.styled'
 
 function Notifications() {
     return (
-        <div>Notifications</div>
+        <Wrapper>
+            <Header>Notifications</Header>
+            <Content>
+
+            </Content>
+        </Wrapper>
     )
 }
 

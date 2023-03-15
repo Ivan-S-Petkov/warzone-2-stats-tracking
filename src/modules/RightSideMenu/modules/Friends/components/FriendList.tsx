@@ -1,26 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NoResults } from 'src/modules/RightSideMenu/components/common.styled';
 import { UserContext, UserDB } from 'src/Providers/user';
 import styled from 'styled-components';
-import { filterFriendsList, getUsers } from '../utils.tsx/users';
+import { filterFriendsList } from '../utils.tsx/users';
 import FriendBox from './FriendBox';
 
-type Props = { setFriendList: any }
+type Props = { users: UserDB[], setFriendList: any }
 
-function FriendsList({ setFriendList }: Props) {
-    const { user, getUserData } = useContext(UserContext);
-
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+function FriendsList({ users, setFriendList }: Props) {
+    const { user } = useContext(UserContext);
     const [results, setResults] = useState<UserDB[]>([]);
 
-    getUsers()
-        .then((users: any) => {
-            setUsers(users);
-            let filteredResults: UserDB[] = filterFriendsList(user, users);
-            setResults(filteredResults);
-            setLoading(false);
-        })
+    useEffect(() => {
+        let filteredResults: UserDB[] = filterFriendsList(user, users);
+        setResults(filteredResults);
+    }, [user, users])
 
     return (
         <FriendList>
@@ -40,6 +34,7 @@ const Results = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
+    height:100%;
     overflow-y: auto;
 `
 

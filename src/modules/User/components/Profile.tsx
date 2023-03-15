@@ -15,15 +15,9 @@ function Profile() {
 
         logOutHandle().then((res: any) => {
             if (res) {
-                let name = 'Error';
-                let message = res.replace('Firebase: Error ', '');
-                setMenuError({ name, message });
             }
         });
     }
-
-
-
 
     return (
         <Wrapper>

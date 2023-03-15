@@ -5,39 +5,27 @@ import styled from 'styled-components';
 import { filteredUsers, getUsers } from '../utils.tsx/users';
 import FriendBox from './FriendBox'
 
-type Props = { setFriendList: any }
+type Props = { users: UserDB[], setFriendList: any }
 
-function FindList({ setFriendList }: Props) {
+function FindList({ users, setFriendList }: Props) {
     const { user, setUserData } = useContext(UserContext);
-
     const [searchString, setSearchString] = useState('');
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState([]);
     const [results, setResults] = useState<UserDB[]>([]);
-    const [fetch, setFetch] = useState(false);
 
     function searchHandler(e: any) {
-        setSearchString(e.target.value)
-        if (searchString.length > 2 && !fetch) {
-            setLoading(true);
-            setFetch(true);
-            getUsers()
-                .then((users: any) => {
-                    setUsers(users);
-                    let filteredResults: UserDB[] = filteredUsers(user, users, searchString);
-                    setResults(filteredResults);
-                    setLoading(false);
-                })
-        }
-        if (searchString.length < 3) {
-            setFetch(false);
-        }
+        console.log("Filter Search");
 
-        if (users.length > 0 && fetch) {
-            let filteredResults: UserDB[] = filteredUsers(user, users, searchString)
+        setSearchString(e.target.value)
+        if (searchString.length > 2) {
+            setLoading(true);
+            let filteredResults: UserDB[] = filteredUsers(user, users, searchString);
             setResults(filteredResults);
+            setLoading(false);
         }
     }
+
+
 
 
     return (

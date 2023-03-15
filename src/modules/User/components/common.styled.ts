@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-size: max(14px, 0.8vw);
 `;
 
 export const Header = styled.div`
@@ -25,7 +26,7 @@ export const Content = styled.div`
 
   p {
     margin-bottom: 5px;
-    font-size: max(14px, 0.8vw);
+    text-align: justify;
   }
 `;
 
@@ -39,7 +40,7 @@ export const ContentForm = styled.form`
 
   p {
     margin-bottom: 5px;
-    font-size: max(14px, 0.8vw);
+    text-align: justify;
   }
 
   input {
@@ -48,21 +49,20 @@ export const ContentForm = styled.form`
     width: 100%;
     border: none;
     border-radius: 3px;
-    font-size: min(15px, 2vw);
     line-height: 19px;
     color: #000;
     margin: 0;
-    padding: 9px 13px;
+    padding: 6px 13px;
     box-sizing: border-box;
   }
 `;
 
 export const Button = styled.button`
+  font-size: max(14px, 0.8vw);
   box-sizing: border-box;
   margin-top: 2vh;
   display: flex;
   width: 100%;
-  font-size: 18px;
   text-transform: uppercase;
   padding: 5px;
   color: #ffffff;
@@ -84,7 +84,6 @@ export const ForgotButton = styled.div`
   margin-top: 2vh;
   display: flex;
   width: 100%;
-  font-size: 16px;
   text-transform: uppercase;
   padding: 5px;
   color: #ffffff;

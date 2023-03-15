@@ -1,7 +1,7 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react'
-import { UserContext, UserDB } from 'src/Providers/user'
+import { UserContext } from 'src/Providers/user'
 import styled from 'styled-components'
 import { addFriend, removeFriend } from '../api/firestore';
 
@@ -14,7 +14,10 @@ function FriendBox({ userFound, add, setFriendList }: Props) {
     const addHandler = () => {
         addFriend(user, userFound.id)
             .then((res) => {
-                if (user?.id) { getUserData(user.id) }
+                if (user?.id) {
+                    getUserData(user.id);
+                    console.log("Get User Data");
+                }
                 setFriendList(true);
             })
             .catch((err) => console.log(err))
@@ -23,8 +26,10 @@ function FriendBox({ userFound, add, setFriendList }: Props) {
     const removeHandler = () => {
         removeFriend(user, userFound.id)
             .then((res) => {
-                if (user?.id) { getUserData(user.id) }
-                setFriendList(true);
+                if (user?.id) {
+                    getUserData(user.id);
+                    console.log("Get User Data");
+                }
             })
             .catch((err) => console.log(err))
     }
@@ -69,6 +74,7 @@ const Content = styled.div`
     justify-content: center;
     padding-left: 10px;
     position: relative;
+    font-size: min(15px, 1.9vw);
 `
 
 const Name = styled.div`
