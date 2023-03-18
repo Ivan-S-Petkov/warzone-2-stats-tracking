@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrip, faHeadset, faGear, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
+import { Warzone2 } from 'src/api/COD/call-of-duty';
 
 interface IType {
   type: string,
@@ -12,11 +13,24 @@ interface IType {
 function MenuNav(props: { type: string }) {
 
   const { menuOn, component, showComponent } = useContext(AppContext);
-  const { authenticated } = useContext(UserContext);
+  const { user, authenticated } = useContext(UserContext);
 
   function showPage(page: string): void {
     showComponent(page);
   }
+
+  useEffect(() => {
+    console.log("Enter");
+    Warzone2.fullData(user.accountName, user.accountType)
+      .then((res) => {
+        console.log(res);
+      });
+
+    return () => {
+
+    }
+  }, [user])
+
 
   return (
     <Wrapper onClick={() => menuOn()}>

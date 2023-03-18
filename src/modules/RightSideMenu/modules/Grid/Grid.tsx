@@ -1,5 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faGear, faHome, faInfo, faSignOut, faStore, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faHome, faInfo, faKey, faSignOut, faStore, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import React, { useContext } from 'react'
 import { UserContext } from 'src/Providers/user';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import Box from './components/Box';
 
 function Grid() {
 
-    const { authenticated } = useContext(UserContext);
+    const { authenticated, admin } = useContext(UserContext);
 
     const items: { name: string, image: IconProp, show: boolean }[] = [
         { name: 'HQ', image: faHome, show: true },
@@ -16,6 +16,7 @@ function Grid() {
         { name: 'FRIENDS', image: faUserFriends, show: false || authenticated },
         { name: 'STATS', image: faInfo, show: false || authenticated },
         { name: 'SETTINGS', image: faGear, show: false || authenticated },
+        { name: 'ADMIN', image: faKey, show: false || (authenticated && admin) },
         { name: 'SIGN OUT', image: faSignOut, show: false || authenticated },
     ]
 

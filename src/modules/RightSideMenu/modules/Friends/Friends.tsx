@@ -30,7 +30,8 @@ function Friends() {
                     <MenuNav className={list ? ' active' : ''} onClick={() => setList(true)}>List</MenuNav>
                     <MenuNav className={!list ? ' active' : ''} onClick={() => setList(false)}>Find</MenuNav>
                 </Menu>
-                {list ? <FriendsList setFriendList={setFriendList} users={users} /> : <FindList setFriendList={setFriendList} users={users} />}
+                {loading ? "Loading" :
+                    list ? <FriendsList setFriendList={setFriendList} users={users} /> : <FindList setFriendList={setFriendList} users={users} />}
             </ContentFriends>
         </Wrapper>
     )

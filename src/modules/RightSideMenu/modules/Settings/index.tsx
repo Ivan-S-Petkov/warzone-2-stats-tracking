@@ -9,9 +9,9 @@ function Settings() {
     const { user, setUserData } = useContext(UserContext);
     const { setMenuError } = useContext(AppContext);
 
-    const [name, setName] = useState(user!.name || '');
-    const [accountType, setAccountType] = useState(user!.accountType || platforms.Activision);
-    const [accountName, setAccountName] = useState(user!.accountName || '');
+    const [name, setName] = useState(user.name || '');
+    const [accountType, setAccountType] = useState(user.accountType || platforms.Activision);
+    const [accountName, setAccountName] = useState(user.accountName || '');
 
     function onChange(action: string, e: any): void {
         e.preventDefault();
@@ -32,14 +32,23 @@ function Settings() {
         }
     }
 
-
     const saveAccountHandler = (e: any) => {
         e.preventDefault();
+        setMenuError(null);
+
         let data: any = {
             name,
             accountType,
             accountName,
         };
+
+        if (!accountName) {
+            data = {
+                name,
+                accountType: '',
+                accountName: '',
+            }
+        }
 
         if (accountType && accountName) {
             Me.codPoints(accountName, accountType)
@@ -48,21 +57,42 @@ function Settings() {
                         setMenuError({ name: 'Error', message: 'Gaming Account information is incorrect.' });
                         return;
                     }
-
+                    updateUserData(user.id, data)
+                        .then((res) => {
+                            readUserData(user.id)
+                                .then((res: any) => {
+                                    setUserData(res);
+                                    setMenuError({ name: 'Notification', message: 'Account details updated successful.' })
+                                })
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                })
+                .catch((err) => {
+                    console.log(err);
                 })
         }
 
-        updateUserData(user!.id, data)
-            .then((res) => {
-                readUserData(user!.id)
-                    .then((res: any) => {
-                        setUserData(res);
-                        setMenuError({ name: 'Notification', message: 'Account details updated successful.' })
-                    })
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        if (!accountName) {
+            data = {
+                name,
+                accountType: '',
+                accountName: '',
+            }
+
+            updateUserData(user.id, data)
+                .then((res) => {
+                    readUserData(user.id)
+                        .then((res: any) => {
+                            setUserData(res);
+                            setMenuError({ name: 'Notification', message: 'Account details updated successful.' })
+                        })
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     }
 
 

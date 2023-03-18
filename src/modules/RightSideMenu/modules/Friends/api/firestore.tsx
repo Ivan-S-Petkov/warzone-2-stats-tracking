@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, getFirestore, setDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { UserDB } from "src/Providers/user";
 
 const db = getFirestore();

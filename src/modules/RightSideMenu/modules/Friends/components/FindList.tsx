@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react'
 import { NoResults } from 'src/modules/RightSideMenu/components/common.styled';
 import { UserContext, UserDB } from 'src/Providers/user';
 import styled from 'styled-components';
-import { filteredUsers, getUsers } from '../utils.tsx/users';
+import { filteredUsers } from '../utils.tsx/users';
 import FriendBox from './FriendBox'
 
 type Props = { users: UserDB[], setFriendList: any }
 
 function FindList({ users, setFriendList }: Props) {
-    const { user, setUserData } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [searchString, setSearchString] = useState('');
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState<UserDB[]>([]);

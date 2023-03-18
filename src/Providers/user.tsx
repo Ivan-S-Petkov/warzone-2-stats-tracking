@@ -11,6 +11,7 @@ export interface UserDB {
     id: string,
     name: string,
     email: string,
+    admin: boolean,
     imageUrl: string,
     accountType: platforms,
     accountName: string,
@@ -20,6 +21,7 @@ export interface UserDB {
 interface IUser {
     user: UserDB;
     authenticated: boolean;
+    admin: boolean;
     loadingAuthState: boolean;
     setUserData(user: UserDB): void;
     getUserData(id: string): void;
@@ -28,6 +30,7 @@ interface IUser {
 export const UserContext = createContext<IUser>({
     user: {} as UserDB,
     authenticated: false,
+    admin: false,
     loadingAuthState: true,
     setUserData: () => { },
     getUserData: () => { },
@@ -45,6 +48,7 @@ function UserContextProvider({ children }: { children: any }) {
     const contextValue = {
         user: user,
         authenticated: user.id !== undefined,
+        admin: user.admin !== undefined,
         loadingAuthState: false,
         setUserData: useCallback((user: UserDB) => setUserData(user), []),
         getUserData: useCallback((id: string) => {
@@ -73,6 +77,7 @@ function UserContextProvider({ children }: { children: any }) {
                                 id: user.uid,
                                 name: user.displayName || '',
                                 email: user.email || '',
+                                admin: user.admin || false,
                                 imageUrl: user.photoURL || '',
                                 accountType: '',
                                 accountName: '',

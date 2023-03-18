@@ -8,7 +8,7 @@ import styled from 'styled-components';
 function Profile() {
 
     const { authenticated, user } = useContext(UserContext);
-    const { setMenuError, showComponent } = useContext(AppContext);
+    const { showComponent } = useContext(AppContext);
 
     const logOutHandler = (e: any) => {
         e.preventDefault();

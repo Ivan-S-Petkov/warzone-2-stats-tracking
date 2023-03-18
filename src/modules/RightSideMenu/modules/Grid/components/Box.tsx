@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { logOutHandle } from 'src/modules/User/utils/firebase'
 import { AppContext } from 'src/Providers/global'
 import styled from 'styled-components'
@@ -33,6 +33,10 @@ function Box({ name, image }: Props) {
                 break;
             case 'SETTINGS':
                 showComponent('settings');
+                break;
+            case 'ADMIN':
+                menuOff();
+                navigate('admin');
                 break;
             case 'SIGN OUT':
                 logOutHandle().then((res: any) => {
