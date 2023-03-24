@@ -39,7 +39,7 @@ function FindList({ users, setFriendList }: Props) {
                 loading ? <NoResults>Loading</NoResults> :
                     <Results>
                         {results.map(function (userFound, i) {
-                            return <FriendBox userFound={userFound} add={true} setFriendList={setFriendList} />
+                            return <FriendBox key={i} userFound={userFound} add={true} setFriendList={setFriendList} />
                         })}
                     </Results>
             }

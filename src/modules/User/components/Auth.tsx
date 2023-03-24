@@ -36,7 +36,6 @@ function Auth() {
     }
 
     const resetPasswordHandler = (e: any) => {
-        e.preventDefault();
 
         if (email === '') {
             setMenuError({ name: 'Error', message: 'Email should not be empty.' });

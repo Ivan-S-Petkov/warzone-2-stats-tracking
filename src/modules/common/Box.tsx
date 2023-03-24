@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import img from '../../../images/DMZ.jpg'
+import img from '../../images/DMZ.jpg'
+import { Game } from '../Stats'
 
-function Box() {
+type Props = { game: any }
+
+function Box({ game }: Props) {
     return (
         <Wrapper>
             <Content>
@@ -14,7 +17,7 @@ function Box() {
 }
 
 const Wrapper = styled.div`
-    height: 20vh;
+    height: 21.4vh;
     width: 20%;
     border-radius: 4px;
     box-sizing: border-box;
@@ -25,13 +28,13 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.div`
-    height: 18vh;
-    margin: 0.5vh 1px 1vh 1px;
+    margin-top: 0.5vh;
+    height: 18.5vh;
     color:white;
-    display: flex;
-    flex-direction: column;
     background-image: url(${img});
     background-size: cover;
+    display: flex;
+    flex-direction: column;
     justify-content:end;
     align-items: center;
     font-size: min(35px, 2vw);

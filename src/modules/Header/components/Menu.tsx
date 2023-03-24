@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrip, faHeadset, faGear, faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
 import { Warzone2 } from 'src/api/COD/call-of-duty';
+import Level from './Level';
 
 interface IType {
   type: string,
@@ -14,17 +15,23 @@ function MenuNav(props: { type: string }) {
 
   const { menuOn, component, showComponent } = useContext(AppContext);
   const { user, authenticated } = useContext(UserContext);
+  const [userWZData, setUserWZData] = useState({});
 
   function showPage(page: string): void {
     showComponent(page);
   }
 
   useEffect(() => {
-    console.log("Enter");
-    Warzone2.fullData(user.accountName, user.accountType)
-      .then((res) => {
-        console.log(res);
-      });
+    if (user.accountName && user.accountType) {
+      Warzone2.fullData(user.accountName, user.accountType)
+        .then((res) => {
+          console.log(res);
+          setUserWZData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
 
     return () => {
 
@@ -39,7 +46,7 @@ function MenuNav(props: { type: string }) {
         {authenticated ? <MenuElem className={component === 'friends' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem> : null}
         <MenuElem className={component === 'notifications' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
         {authenticated ? <MenuElem className={component === 'settings' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem> : null}
-        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}><FontAwesomeIcon icon={faUser} /></MenuElem>
+        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}>{authenticated && userWZData ? <Level userWZData={userWZData} /> : <FontAwesomeIcon icon={faUser} />}</MenuElem>
       </MenuWrapper>
     </Wrapper >
   )
@@ -112,6 +119,7 @@ const MenuElem = styled.a <IType>`
   font-size: 2vw;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0);
+  align-items: center;
   ${({ type }) => (type === 'long' ? longME : shortME)}
 
     &:hover{

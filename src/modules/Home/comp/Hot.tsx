@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getGames } from 'src/modules/Stats/utils/games';
 import styled from 'styled-components'
-import Box from './Box'
+import Box from '../../common/Box'
 import { Content, Mark, Label, Line, Circle, ArrowDown, ArrowUp } from './common.styled'
 
 function Hot() {
+
+    const [games, setGames] = useState<Object[]>();
+
+    useEffect(() => {
+        getGames()
+            .then((res) => { setGames(res) })
+            .catch((err) => console.log(err)
+            )
+
+        return () => {
+
+        }
+    })
+
+
     return (
         <Wrapper>
             <Line lastPage={'middle'} />
@@ -14,7 +30,7 @@ function Hot() {
                     <p>DMZ is an extraction royale mode for Call of Duty: Modern Warfare 2, free for all players. All players are thrown into Al Mazrah and have a limited window to scavenge supplies, complete faction missions, and defeat AI bosses before extracting. You get one life in this mode.</p>
                 </Headline>
                 <Mark><Circle /><Label to='/hot'>WHAT'S HOT</Label> </Mark>
-                <Box />
+                {games ? games.map((game) => <Box game={game} />) : ''}
                 <Mark><ArrowDown /><Label to='/games'>GAMES</Label> </Mark>
             </Content>
         </Wrapper>

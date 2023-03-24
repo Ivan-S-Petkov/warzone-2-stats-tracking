@@ -1,5 +1,5 @@
+import { getCollection } from "src/api/firestore";
 import { UserDB } from "src/Providers/user";
-import { getCollection } from "../api/firestore";
 
 export async function getUsers() {
     return await getCollection('users');

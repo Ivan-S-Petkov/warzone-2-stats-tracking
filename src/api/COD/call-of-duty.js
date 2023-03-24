@@ -242,7 +242,7 @@ class Endpoints {
 class WZ {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       ({
         gamertag,
         _platform: platform,
@@ -258,7 +258,7 @@ class WZ {
       return sendRequest(endpoint.fullData());
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -280,7 +280,7 @@ class WZ {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -297,7 +297,7 @@ class WZ {
       return sendRequest(endpoint.combatHistoryWithDate(startTime, endTime));
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -314,7 +314,7 @@ class WZ {
       return sendRequest(endpoint.breakdown());
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -331,7 +331,7 @@ class WZ {
       return sendRequest(endpoint.breakdownWithDate(startTime, endTime));
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -358,7 +358,7 @@ class WZ {
 class MW {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -375,7 +375,7 @@ class MW {
       return sendRequest(endpoint.fullData());
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -397,7 +397,7 @@ class MW {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -414,7 +414,7 @@ class MW {
       return sendRequest(endpoint.combatHistoryWithDate(startTime, endTime));
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -431,7 +431,7 @@ class MW {
       return sendRequest(endpoint.breakdown());
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -448,7 +448,7 @@ class MW {
       return sendRequest(endpoint.breakdownWithDate(startTime, endTime));
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -465,7 +465,7 @@ class MW {
       return sendRequest(endpoint.matchInfo(matchId));
     };
     this.seasonloot = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -482,7 +482,7 @@ class MW {
       return sendRequest(endpoint.seasonLoot());
     };
     this.mapList = async (platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -503,7 +503,7 @@ class MW {
 class MW2 {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -520,7 +520,7 @@ class MW2 {
       return sendRequest(endpoint.fullData());
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -542,7 +542,7 @@ class MW2 {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -559,7 +559,7 @@ class MW2 {
       return sendRequest(endpoint.combatHistoryWithDate(startTime, endTime));
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -576,7 +576,7 @@ class MW2 {
       return sendRequest(endpoint.breakdown());
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -593,7 +593,7 @@ class MW2 {
       return sendRequest(endpoint.breakdownWithDate(startTime, endTime));
     };
     this.seasonloot = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -610,7 +610,7 @@ class MW2 {
       return sendRequest(endpoint.seasonLoot());
     };
     this.mapList = async (platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -627,7 +627,7 @@ class MW2 {
       return sendRequest(endpoint.mapList());
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -648,7 +648,7 @@ class MW2 {
 class WZ2 {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       ({
         gamertag,
         _platform: platform,
@@ -664,7 +664,7 @@ class WZ2 {
       return sendRequest(endpoint.fullData());
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -686,7 +686,7 @@ class WZ2 {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -703,7 +703,7 @@ class WZ2 {
       return sendRequest(endpoint.combatHistoryWithDate(startTime, endTime));
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -720,7 +720,7 @@ class WZ2 {
       return sendRequest(endpoint.breakdown());
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -737,7 +737,7 @@ class WZ2 {
       return sendRequest(endpoint.breakdownWithDate(startTime, endTime));
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
 
       ({
         gamertag,
@@ -758,7 +758,7 @@ class WZ2 {
 class CW {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -776,7 +776,7 @@ class CW {
       }
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -799,7 +799,7 @@ class CW {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -817,7 +817,7 @@ class CW {
       }
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -835,7 +835,7 @@ class CW {
       }
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -853,7 +853,7 @@ class CW {
       }
     };
     this.seasonloot = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -871,7 +871,7 @@ class CW {
       }
     };
     this.mapList = async (platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
       {
         ({
           gamertag,
@@ -889,7 +889,7 @@ class CW {
       }
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
       {
         ({
           gamertag,
@@ -911,7 +911,7 @@ class CW {
 class VG {
   constructor() {
     this.fullData = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -929,7 +929,7 @@ class VG {
       }
     };
     this.combatHistory = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -952,7 +952,7 @@ class VG {
       endTime,
       platform
     ) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -970,7 +970,7 @@ class VG {
       }
     };
     this.breakdown = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -988,7 +988,7 @@ class VG {
       }
     };
     this.breakdownWithDate = async (gamertag, startTime, endTime, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -1006,7 +1006,7 @@ class VG {
       }
     };
     this.seasonloot = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -1024,7 +1024,7 @@ class VG {
       }
     };
     this.mapList = async (platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
       {
         ({
           gamertag,
@@ -1042,7 +1042,7 @@ class VG {
       }
     };
     this.matchInfo = async (matchId, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
       {
         ({
           gamertag,
@@ -1084,7 +1084,7 @@ class SHOP {
       return sendRequest(endpoint.bundleInformation(title, bundleId));
     };
     this.battlePassLoot = async (title, season, platform) => {
-      var gamertag, platform, lookupType;
+      var gamertag, lookupType;
       {
         ({
           gamertag,
@@ -1106,7 +1106,7 @@ class SHOP {
 class USER {
   constructor() {
     this.friendFeed = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       {
         ({
           gamertag,
@@ -1163,7 +1163,7 @@ class USER {
     };
 
     this.connectedAccounts = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
       ({
         gamertag,
         _platform: platform,
@@ -1180,7 +1180,7 @@ class USER {
     };
 
     this.settings = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -1197,7 +1197,7 @@ class USER {
       return sendRequest(endpoint.settings());
     };
     this.friendAction = async (gamertag, platform, action) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,
@@ -1218,7 +1218,7 @@ class USER {
 class ALT {
   constructor() {
     this.search = async (gamertag, platform) => {
-      var gamertag, platform, lookupType;
+      var lookupType;
 
       ({
         gamertag,

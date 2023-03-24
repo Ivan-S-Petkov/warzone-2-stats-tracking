@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 interface iLastPage {
   lastPage: string;
@@ -43,7 +43,7 @@ export const Label = styled(NavLink)`
 
 export const Line = styled.div<iLastPage>`
   ${({ lastPage }) =>
-    lastPage === 'last' ? 'margin: 3.5vh 1vw 22vh 1vw' : 'margin: 3.5vh 1vw;'};
+    lastPage === "last" ? "margin: 3.5vh 1vw 24vh 1vw" : "margin: 3.5vh 1vw;"};
   border-right: rgba(80, 80, 80, 0.9) solid 2px;
   display: flex;
   flex-direction: column;

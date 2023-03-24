@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { NavLink, useLocation } from "react-router-dom";
+import { UserContext } from 'src/Providers/user';
 
 function Navigation() {
-
+  const { authenticated, admin } = useContext(UserContext);
   const url: string = useLocation().pathname;
   const links: Array<string> = ['hot', 'games'];
   let activeHome: boolean = false;
@@ -12,12 +13,15 @@ function Navigation() {
     activeHome = true;
   }
 
+
+
   return (
     <Wrapper>
       <Nav>
         <LinkElem className={Boolean(activeHome) ? "active nav-link" : "nav-link"} to='' >HOME</LinkElem>
-        <LinkElem className="nav-link" to='battlepass'>BATTLEPASS</LinkElem>
+        <LinkElem className="nav-link" to='stats'>STATS</LinkElem>
         <LinkElem className="nav-link" to='store'>STORE</LinkElem>
+        {authenticated && admin ? <LinkElem className="nav-link" to='admin'>ADMIN</LinkElem> : ''}
       </Nav>
     </Wrapper >
   )

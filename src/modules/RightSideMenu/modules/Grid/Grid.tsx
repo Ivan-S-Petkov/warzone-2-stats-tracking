@@ -25,7 +25,7 @@ function Grid() {
             <Header>Menu</Header>
             <ContentGrid>
                 {items.map((item: any) => {
-                    return item.show ? <Box name={item.name} image={item.image} ></Box> : '';
+                    return item.show ? <Box key={item.name} name={item.name} image={item.image} ></Box> : '';
                 })}
             </ContentGrid>
         </Wrapper>

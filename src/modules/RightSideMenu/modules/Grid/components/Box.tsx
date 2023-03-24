@@ -65,8 +65,8 @@ const Content = styled.div`
     background-color: rgba(50,50,50,1);
     border: 2px solid rgba(120,120,120,1);
     border-radius: 6px;
-    width: 7vw;
-    height: 7vw;
+    width: 6.8vw;
+    height: 6.8vw;
     margin: 1%;
     display: flex;
     flex-direction: column-reverse;

@@ -21,7 +21,7 @@ function FriendsList({ users, setFriendList }: Props) {
             {results.length > 0 ?
                 <Results>
                     {results.map(function (userFound, i) {
-                        return <FriendBox userFound={userFound} add={false} setFriendList={setFriendList} />
+                        return <FriendBox key={i} userFound={userFound} add={false} setFriendList={setFriendList} />
                     })}
                 </Results>
                 : <NoResults>No friends yet. Click <span style={{ cursor: "pointer" }} onClick={() => setFriendList(false)}>Find</span> to add!</NoResults>}

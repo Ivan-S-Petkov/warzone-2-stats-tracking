@@ -13,6 +13,9 @@ import Games from './modules/Home/comp/Games';
 import Message from './modules/Home/comp/Message';
 import ErrorBoundary from './modules/common/ErrorBoundary';
 import UserContextProvider from './Providers/user';
+import Stats from './modules/Stats';
+import Store from './modules/Store';
+import Admin from './modules/Admin';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -37,6 +40,9 @@ function App() {
               <Route path="hot" element={<Hot />} />
               <Route path="games" element={<Games />} />
             </Route>
+            <Route path="stats" element={<Stats />} ></Route>
+            <Route path="store" element={<Store />} ></Route>
+            <Route path="admin" element={<Admin />} ></Route>
           </Routes>
         </ErrorBoundary>
       </UserContextProvider>
