@@ -3,6 +3,7 @@ import User from 'src/modules/User';
 import { AppContext } from 'src/Providers/global';
 import styled from 'styled-components'
 import MenuNav from '../Header/components/Menu'
+import DonateButton from './components/DonateButton';
 import MenuError from './components/MenuError';
 import Friends from './modules/Friends/Friends';
 import Grid from './modules/Grid/Grid';
@@ -27,7 +28,7 @@ function LongMenu() {
         {component === 'user' ? <User /> : null}
       </Section>
       <Section>
-        React
+        <DonateButton />
       </Section>
     </LongMenuWrapper>
   )

@@ -13,12 +13,14 @@ export interface Game {
 
 function Stats({ }: Props) {
 
-    const [games, setGames] = useState<Object[]>();
+    const [games, setGames] = useState<Game[]>();
+    const [hovered, setHovered] = useState('');
 
     useEffect(() => {
         //Fetch Games
         getGames().then((res) => {
             setGames(res);
+            setHovered(res[0].name);
         }).catch((err) => {
             console.log(err);
 
@@ -36,20 +38,46 @@ function Stats({ }: Props) {
         }
     }, [])
 
+    const hoverHandler = (component: string) => {
+        setHovered(component);
+    }
+
 
     return (
         <Wrapper>
             <Content>
                 <LifeTime>
                     <Personal>
-                        Bla Bla
+                        <h1>{hovered}</h1>
+                        <ModeStats>
+                            <span>
+                                <div>
+                                    <h3>Time Played</h3>
+                                    <h2>{ }</h2>
+                                </div>
+                                <div>
+                                    <h3>Games Played</h3>
+                                    <h2>{ }</h2>
+                                </div>
+                            </span>
+                            <span>
+                                <div>
+                                    <h3>K/D Ratio</h3>
+                                    <h2>{ }</h2>
+                                </div>
+                                <div>
+                                    <h3>Win/Loss Ratio</h3>
+                                    <h2>{ }</h2>
+                                </div>
+                            </span>
+                        </ModeStats>
                     </Personal>
                     <Weapon>
                         LACKMANCH
                     </Weapon>
                 </LifeTime>
                 <Games>
-                    {games ? games.map((game) => { return <Box game={game} /> }) : ''}
+                    {games ? games.map((game) => { return <Box game={game} hovered={hovered} hoverHandler={hoverHandler} /> }) : ''}
                 </Games>
             </Content>
         </Wrapper>
@@ -57,7 +85,7 @@ function Stats({ }: Props) {
 }
 
 const Wrapper = styled.div`
-    margin: 1vh 1vw 1vh 9vw;
+    margin: 1vh 2vw 1vh 9vw;
     display: flex;
     flex-grow: 1;
 `
@@ -71,13 +99,40 @@ const Content = styled.div`
 `
 
 const LifeTime = styled.div`
-    flex-grow: 1;
     display: flex;
+    justify-content: space-between;
     
 `
 
 const Personal = styled.div`
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+
+    h1{
+        font-size: 85px;
+        color: white;
+        text-shadow: 1px 1px 1px #000;
+        text-transform: uppercase;
+    }
+`
+
+const ModeStats = styled.div`
+    text-shadow: 1px 1px 1px #000;
+
+    span {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h2 {
+        font-size: 32px;
+        color: white;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
 
 `
 

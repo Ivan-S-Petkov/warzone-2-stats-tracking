@@ -4,8 +4,8 @@ import { faGrip, faHeadset, faGear, faBell, faUser } from '@fortawesome/free-sol
 import styled, { css } from 'styled-components';
 import { AppContext } from 'src/Providers/global';
 import { UserContext } from 'src/Providers/user';
-import { Warzone2 } from 'src/api/COD/call-of-duty';
 import Level from './Level';
+import { WarzoneContext } from 'src/Providers/warzone';
 
 interface IType {
   type: string,
@@ -14,29 +14,13 @@ interface IType {
 function MenuNav(props: { type: string }) {
 
   const { menuOn, component, showComponent } = useContext(AppContext);
-  const { user, authenticated } = useContext(UserContext);
-  const [userWZData, setUserWZData] = useState({});
+  const { authenticated } = useContext(UserContext);
+  const { solder } = useContext(WarzoneContext);
 
   function showPage(page: string): void {
     showComponent(page);
   }
 
-  useEffect(() => {
-    if (user.accountName && user.accountType) {
-      Warzone2.fullData(user.accountName, user.accountType)
-        .then((res) => {
-          console.log(res);
-          setUserWZData(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-
-    return () => {
-
-    }
-  }, [user])
 
 
   return (
@@ -46,7 +30,7 @@ function MenuNav(props: { type: string }) {
         {authenticated ? <MenuElem className={component === 'friends' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("friends")} type={props.type}><FontAwesomeIcon icon={faHeadset} /></MenuElem> : null}
         <MenuElem className={component === 'notifications' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("notifications")} type={props.type}><FontAwesomeIcon icon={faBell} /></MenuElem>
         {authenticated ? <MenuElem className={component === 'settings' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("settings")} type={props.type}><FontAwesomeIcon icon={faGear} /></MenuElem> : null}
-        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}>{authenticated && userWZData ? <Level userWZData={userWZData} /> : <FontAwesomeIcon icon={faUser} />}</MenuElem>
+        <MenuElem className={component === 'user' ? 'nav-link active' : 'nav-link'} onClick={() => showPage("user")} type={props.type}>{authenticated && solder ? <Level userWZData={solder} /> : <FontAwesomeIcon icon={faUser} />}</MenuElem>
       </MenuWrapper>
     </Wrapper >
   )

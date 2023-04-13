@@ -2,23 +2,25 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-type Props = { game: any }
+type Props = { game: any, hovered: string, hoverHandler: any }
 type Image = { image: string }
+type WrapperProps = { game: any, hovered: string }
 
-function Box({ game }: Props) {
+function Box({ game, hovered, hoverHandler }: Props) {
 
     const link: string = '/stats/' + game.name;
+
     return (
-        <Wrapper to={link}>
+        <Wrapper to={link} onMouseOver={() => hoverHandler(game.name)} hovered={hovered} game={game}>
             <Content image={game.image}>
                 <h4>{game.name}</h4>
                 <p></p>
             </Content>
-        </Wrapper>
+        </Wrapper >
     )
 }
 
-const Wrapper = styled(NavLink)`
+const Wrapper = styled(NavLink) <WrapperProps>`
     height: 21.4vh;
     width: 20%;
     border-radius: 4px;
@@ -26,7 +28,8 @@ const Wrapper = styled(NavLink)`
     margin-left: 0.5vw;
     margin-right: 0.5vw;
     text-decoration: none;
-
+    background-color: ${props => props.hovered === props.game.name ? 'rgba(120, 255, 120, 1)' : ''};
+    
     :hover{
         background-color: rgba(120, 255, 120, 1);
     }

@@ -22,7 +22,6 @@ interface IUser {
     user: UserDB;
     authenticated: boolean;
     admin: boolean;
-    loadingAuthState: boolean;
     setUserData(user: UserDB): void;
     getUserData(id: string): void;
 }
@@ -31,7 +30,6 @@ export const UserContext = createContext<IUser>({
     user: {} as UserDB,
     authenticated: false,
     admin: false,
-    loadingAuthState: true,
     setUserData: () => { },
     getUserData: () => { },
 });
@@ -39,7 +37,6 @@ export const UserContext = createContext<IUser>({
 function UserContextProvider({ children }: { children: any }) {
 
     const [user, setUser] = useState({} as UserDB);
-    const [loadingAuthState, setLoadingAuthState] = useState(true);
 
     const navigate = useNavigate();
     const { menuOff } = useContext(AppContext)
@@ -66,7 +63,6 @@ function UserContextProvider({ children }: { children: any }) {
             login(
                 'MTA4Mjc0MjU0Nzg5NDcyNDUwNDg6MTY1NTM4NTE3OTk1NToyN2ZlZTljZWUzMjllNTkxOTAzMTE5MDc5Njk1ZTYzYw'
             );
-
             if (user) {
                 readUserData(user.uid)
                     .then((res: any) => {
@@ -93,7 +89,6 @@ function UserContextProvider({ children }: { children: any }) {
                 menuOff();
                 navigate('/');
             }
-            setLoadingAuthState(false);
         });
 
         return () => {

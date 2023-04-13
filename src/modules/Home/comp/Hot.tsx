@@ -7,7 +7,8 @@ import { Content, Mark, Label, Line, Circle, ArrowDown, ArrowUp } from './common
 
 function Hot() {
 
-    const [games, setGames] = useState<Object[]>();
+    const [games, setGames] = useState<Game[]>();
+    const [hovered, setHovered] = useState('');
 
     function filterHotGames(games: Game[]) {
         return games.filter((game: Game) => game.hot);
@@ -24,6 +25,10 @@ function Hot() {
         }
     }, [])
 
+    const hoverHandler = (component: string) => {
+        setHovered(component);
+    }
+
 
     return (
         <Wrapper>
@@ -35,7 +40,7 @@ function Hot() {
                     <p>DMZ is an extraction royale mode for Call of Duty: Modern Warfare 2, free for all players. All players are thrown into Al Mazrah and have a limited window to scavenge supplies, complete faction missions, and defeat AI bosses before extracting. You get one life in this mode.</p>
                 </Headline>
                 <Mark><Circle /><Label to='/hot'>WHAT'S HOT</Label> </Mark>
-                <GamesWrapper>{games ? games.map((game) => <Box game={game} />) : ''}</GamesWrapper>
+                <GamesWrapper>{games ? games.map((game) => <Box key={game.name} game={game} hovered={hovered} hoverHandler={hoverHandler} />) : ''}</GamesWrapper>
                 <Mark><ArrowDown /><Label to='/games'>GAMES</Label> </Mark>
             </Content>
         </Wrapper>

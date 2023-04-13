@@ -13,7 +13,7 @@ interface IApp {
 }
 
 export const AppContext = createContext<IApp>({
-    showMenu: true,
+    showMenu: false,
     component: 'grid',
     showComponent: () => { },
     menuOn: () => { },

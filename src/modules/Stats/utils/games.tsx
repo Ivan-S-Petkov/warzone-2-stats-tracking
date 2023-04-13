@@ -1,6 +1,6 @@
 import { getCollection } from "src/api/firestore";
 
-export async function getGames() {
+export async function getGames(): Promise<Array<any>> {
     return await getCollection('games');
 }
 

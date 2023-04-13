@@ -16,6 +16,7 @@ import UserContextProvider from './Providers/user';
 import Stats from './modules/Stats';
 import Store from './modules/Store';
 import Admin from './modules/Admin';
+import WarzoneContextProvider from './Providers/warzone';
 
 interface IShowMenu {
   showMenu: boolean;
@@ -28,23 +29,25 @@ function App() {
   return (
     <Wrapper>
       <UserContextProvider>
-        <GlobalStyle />
-        <Header />
-        <ErrorBoundary>
-          <LongMenu />
-          <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
-          <Routes>
-            <Route path="" element={<Home />} >
-              <Route index element={<Message />} />
-              <Route path="message" element={<Message />} />
-              <Route path="hot" element={<Hot />} />
-              <Route path="games" element={<Games />} />
-            </Route>
-            <Route path="stats" element={<Stats />} ></Route>
-            <Route path="store" element={<Store />} ></Route>
-            <Route path="admin" element={<Admin />} ></Route>
-          </Routes>
-        </ErrorBoundary>
+        <WarzoneContextProvider>
+          <GlobalStyle />
+          <Header />
+          <ErrorBoundary>
+            <LongMenu />
+            <LongMenuBackground onClick={() => menuOff()} showMenu={showMenu} />
+            <Routes>
+              <Route path="" element={<Home />} >
+                <Route index element={<Message />} />
+                <Route path="message" element={<Message />} />
+                <Route path="hot" element={<Hot />} />
+                <Route path="games" element={<Games />} />
+              </Route>
+              <Route path="stats" element={<Stats />} ></Route>
+              <Route path="store" element={<Store />} ></Route>
+              <Route path="admin" element={<Admin />} ></Route>
+            </Routes>
+          </ErrorBoundary>
+        </WarzoneContextProvider>
       </UserContextProvider>
     </Wrapper>
   );
